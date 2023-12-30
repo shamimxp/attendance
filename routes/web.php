@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('attendance');
 });
+Route::post('/store',[\App\Http\Controllers\AttendanceController::class,'store'])->name('sore.data');
