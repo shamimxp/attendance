@@ -75,7 +75,6 @@
                                 <td><input type="text" name="attendance[Hasina][meditation]" class="form-control" placeholder="data for meditation" autocomplete="off"></td>
                                 <td><input type="text" name="attendance[Hasina][present]" class="form-control" placeholder="data for  present" autocomplete="off"></td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('attendance');
 });
+Route::get('/list',[\App\Http\Controllers\AttendanceController::class,'list'])->name('sore.list');
 Route::post('/store',[\App\Http\Controllers\AttendanceController::class,'store'])->name('sore.data');
+Route::get('/edit/{id}',[\App\Http\Controllers\AttendanceController::class,'edit'])->name('sore.edit');
+Route::post('/update/{id}',[\App\Http\Controllers\AttendanceController::class,'update'])->name('sore.update');
+Route::get('/search',[\App\Http\Controllers\AttendanceController::class,'searchByEmpId'])->name('sore.search');
