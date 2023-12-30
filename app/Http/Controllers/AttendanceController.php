@@ -38,28 +38,50 @@ class AttendanceController extends Controller
         $data->update();
         return redirect()->route('sore.list');
     }
-    public function searchByEmpId(Request $request){
+    public function search(){
+        return view('search');
+    }
+    public function searchByEmpId(Request $request)
+    {
+        // Get all attendance data
+        $attendanceData = Attendance::all();
+        // Initialize an array to store Shamim's data
+        $shamimData = [];
+        // Loop through the attendance data
+        foreach ($attendanceData as $attendance) {
+            // Decode the JSON string for the 'attendance' key
+            $attendanceDataArray = json_decode($attendance->attendance, true);
+            // Check if 'shamim' key exists
+            if (isset($attendanceDataArray[$request->search_data])) {
+                // Add 'shamim' data to the result array
+                $shamimData[] = $attendanceDataArray[$request->search_data];
+            }else{
+                return "data not found";
+            }
+        }
+
+        // Dump and die to inspect the result
+        dd($shamimData);
+    }
+
+
+}
+
+
+
 //        $data_d = Attendance::find(1);
 //        $data = json_decode($data_d->attendance);
 //        $shamimData = collect($data)->where('shamim')->first();
-
-        $data_d = Attendance::find(1); // Replace 1 with the actual ID you are querying
-
-        if ($data_d) {
-            $data = json_decode($data_d->attendance, true); // Convert JSON to associative array
-            $shamimData = collect($data)->get('shamim');
-
-            // $shamimData now contains the data for "shamim" if it exists
-            if ($shamimData) {
-                // Do something with $shamimData
-                dd($shamimData);
-            } else {
-                // "shamim" data not found
-                dd('shamim data not found');
-            }
-        } else {
-            // Record not found
-            dd('Record not found');
-        }
-    }
-}
+//        $data_d = Attendance::find($request->search_data); // Replace 1 with the actual ID you are querying
+//         dd($data_d);
+//        if ($data_d) {
+//            $data = json_decode($data_d->attendance, true);
+//            $shamimData = collect($data)->get('$s');
+//            if ($shamimData) {
+//                dd($shamimData);
+//            } else {
+//                dd('shamim data not found');
+//            }
+//        } else {
+//            dd('Record not found');
+//        }
