@@ -12,7 +12,6 @@ class AttendanceController extends Controller
         return view('list',compact('data'));
     }
     public function store(Request $request){
-//        dd($request->all());
         $data = new Attendance();
         $data->sector = $request->sector;
         $data->shift = $request->shift;
@@ -20,7 +19,8 @@ class AttendanceController extends Controller
         $data->date = $request->date;
         $data->status = $request->status;
         $data->save();
-        return "data submit successfully!";
+
+
     }
     public function edit($id){
         $data = Attendance::find($id);
