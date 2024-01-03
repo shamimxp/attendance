@@ -89,6 +89,10 @@ class AttendanceController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $attendance = Attendance::find($id);
+        $attendance->delete();
+        return response()->json([
+            'message' => 'Attendance Delete successfully',
+        ],200);
     }
 }
