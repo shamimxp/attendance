@@ -23,3 +23,5 @@ Route::post('/update/{id}',[\App\Http\Controllers\AttendanceController::class,'u
 
 Route::get('/search/form',[\App\Http\Controllers\AttendanceController::class,'search'])->name('search');
 Route::post('/search',[\App\Http\Controllers\AttendanceController::class,'searchByEmpId'])->name('sore.search');
+
+Route::post('/bazar/store',[\App\Http\Controllers\BazarDetailsController::class,'store'])->name('bazar.data.store');

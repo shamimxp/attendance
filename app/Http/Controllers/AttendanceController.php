@@ -12,6 +12,7 @@ class AttendanceController extends Controller
         return view('list',compact('data'));
     }
     public function store(Request $request){
+        dd($request->all());
         $data = new Attendance();
         $data->sector = $request->sector;
         $data->shift = $request->shift;
